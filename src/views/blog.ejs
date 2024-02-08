@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/nav') %> <% if (locals.blog) { %>
+    <div class="container mt-4">
+      <h2 class="mb-4"><%= blog.title %></h2>
+      <img
+        src="<%= blog.coverImage %>"
+        alt="<%= blog.coverImage %>"
+        width="500px"
+      />
+      <p class="mt-4"><%= blog.content %></p>
+
+      <div style="font-style: italic; float: right">
+        <h5>By: <%= blog.createdBy.firstName %></h5>
+      </div>
+    </div>
+    <% } %> <%- include('./partials/script') %>
+  </body>
+</html>

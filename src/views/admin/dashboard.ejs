@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboards</title>
+    <%- include('../partials/head') %>
+    <style>
+      table {
+        width: 500px;
+        text-align: center;
+      }
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      #logout-button {
+        background-color: brown;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        transition: background-color 0.2s;
+      }
+
+      #logout {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+      }
+
+      #logout-button:hover {
+        background-color: rgb(124, 5, 5);
+      }
+
+      #changePassword-button {
+        background-color: green;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        transition: background-color 0.2s;
+      }
+
+      #changePassword {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+      }
+
+      #changePassword-button:hover {
+        background-color: rgb(6, 97, 6);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1>Dashboard</h1>
+      <button id="logout-button">
+        <a id="logout" href="/admin/logout">Logout</a>
+      </button>
+
+      <button id="changePassword-button">
+        <a id="changePassword" href="/admin/changePassword">Change Password</a>
+      </button>
+      <hr />
+      <div class="container mt-4">
+        <h3>Blogs <% if (locals.blogs) { %> (<%= blogs.length %>) <% } %></h3>
+        <hr />
+        <table>
+          <thead>
+            <th>S.No</th>
+            <th>Title</th>
+            <th>Created By</th>
+          </thead>
+          <% if (locals.blogs) { %> <% blogs.forEach((blog, index) => { %>
+          <tbody>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= blog.title %></td>
+              <td><%= blog.createdBy.firstName %></td>
+            </tr>
+          </tbody>
+          <% }) %> <% } %>
+        </table>
+      </div>
+
+      <div class="container mt-4">
+        <h3>Users <% if (locals.users) { %> (<%= users.length %>) <% } %></h3>
+        <hr />
+        <table>
+          <thead>
+            <th>S.No</th>
+            <th>First Name</th>
+            <th>Email Address</th>
+          </thead>
+          <% if (locals.users) { %> <% users.forEach((user, index) => { %>
+          <tbody>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= user.firstName %></td>
+              <td><%= user.email %></td>
+            </tr>
+          </tbody>
+          <% }) %> <% } %>
+        </table>
+      </div>
+    </div>
+    <%- include('../partials/script') %>
+  </body>
+</html>
